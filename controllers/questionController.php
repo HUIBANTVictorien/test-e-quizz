@@ -18,7 +18,7 @@ $textGender = '';
 $textInsetError = '';
 $checkInsert = false;
 //Vérification de l'existance du pseudo
-if (isset($_POST['username'])) {
+if (!empty($_POST['username'])) {
 //si il existe on l'hydrate dans l'objet users
     $user->username = trim(strip_tags($_POST['username']));
 //vérification du format du pseudo.
@@ -30,7 +30,7 @@ if (isset($_POST['username'])) {
         $checkUsername = false;
     }
 }
-if (isset($_POST['birthdate'])) {
+if (!empty($_POST['birthdate'])) {
     $user->birthdate = $_POST['birthdate'];
     list($year, $month, $day) = explode('-', $user->birthdate);
     $day = intval($day);
@@ -43,7 +43,7 @@ if (isset($_POST['birthdate'])) {
         $textUsername = 'Vérifier le format de la date';
     }
 }
-if (isset($_POST['gender'])) {
+if (!empty($_POST['gender'])) {
     if ($_POST['gender'] == 'man') {
         $user->gender = 1;
         $checkGender = true;
@@ -58,4 +58,6 @@ if ($checkBirthdate && $checkUsername && $checkGender) {
     $_SESSION['birthdate'] = $user->birthdate;
     $_SESSION['gender'] = $user->gender;
     $checkInsert = true;
+} else {
+    header('Location: index.php');
 }

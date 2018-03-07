@@ -20,7 +20,6 @@ include_once 'controllers/resultatsController.php';
     </head>
     <body>
         <h1 class="w-100 text-center display-1">Quizz-in</h1>
-
         <?php
         if ($resultAnswers->id_user != 0) {
             ?>
