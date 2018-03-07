@@ -11,8 +11,8 @@ class result extends database {
     public function __construct() {
         parent::__construct();
     }
-    
-    public function getResultByUserId(){
+
+    public function getResultByUserId() {
         $query = 'SELECT COUNT(`id_pokfze_answers`) '
                 . 'FROM `pokfze_result '
                 . 'INNER JOIN `pokfze_answers` '
@@ -29,15 +29,15 @@ class result extends database {
      */
     public function insertResultQuestion() {
         $sql = 'INSERT INTO `pokfze_result`(`id_pokfze_user`, `id_pokfze_question`, `id_pokfze_answers`) '
-                . 'VALUES (:resultUserId,:resultQuestionId,:resultAnswersId)';
+                . 'VALUES (:resultUserId, :resultQuestionId, :resultAnswersId)';
         $result = $this->db->prepare($sql);
         $result->bindValue(':resultUserId', $this->id_user, PDO::PARAM_INT);
         $result->bindValue(':resultQuestionId', $this->id_question, PDO::PARAM_INT);
         $result->bindValue(':resultAnswersId', $this->id_answers, PDO::PARAM_INT);
         return $result->execute();
     }
-    
-    public function scoreRanking(){
+
+    public function scoreRanking() {
         $query = 'SELECT COUNT(`id_pokfze_answers`) AS `score`, `id_pokfze_user`, `pokfze_user`.`username` '
                 . 'FROM `pokfze_result` '
                 . 'INNER JOIN `pokfze_answers` ON `pokfze_result`.`id_pokfze_answers` = `pokfze_answers`.`id` '
@@ -49,7 +49,7 @@ class result extends database {
         $queryExecute = $this->db->query($query);
         return $queryExecute->fetch(PDO::FETCH_OBJ);
     }
-    
+
     public function __destruct() {
         parent::__destruct();
     }

@@ -51,5 +51,6 @@ if ($checkBirthdate && $checkUsername && $checkGender) {
     $_SESSION['username'] = $user->username;
     $_SESSION['birthdate'] = $user->birthdate;
     $_SESSION['gender'] = $user->gender;
+    $checkInsert = true;
 }
 ?>

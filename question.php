@@ -1,7 +1,10 @@
 <?php
+session_start();
 include_once 'models/database.php';
 include_once 'models/question.php';
 include_once 'models/answers.php';
+include_once 'models/users.php';
+include_once 'models/result.php';
 include_once 'controllers/questionController.php';
 ?>
 <!DOCTYPE html>
@@ -18,7 +21,7 @@ include_once 'controllers/questionController.php';
       </div>
       <div class="row">
         <div class="offset-3 col-6">  
-          <form>
+          <form method="POST">
             <div class = "card border-primary mb-3 visible">
               <div class = "card-header">
                 <h2 class="h3">
@@ -54,8 +57,8 @@ include_once 'controllers/questionController.php';
                         if ($answer->idQuestion == $question->id) {
                             ?>
                             <p class="card-text">
-                              <input type="radio" name="question[<?= $answer->idQuestion; ?>]" value="<?= $answer->id; ?>">
-                              <label class="pl-3" for="question[<?= $answer->idQuestion; ?>]"><?= $answer->answer; ?></label>
+                              <input type="radio" name="nbQuestion<?= $answer->id; ?>" value="<?= $answer->id; ?>" />
+                              <label class="pl-3" for="question<?= $answer->idQuestion; ?>"><?= $answer->answer; ?></label>
                             </p>
                             <?php
                         }
@@ -66,12 +69,21 @@ include_once 'controllers/questionController.php';
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <h4 class="alert-heading">Le saviez-vous ?</h4>
                     <p class="mb-0"><?= $question->description ?>.</p>
-                    <div class="d-flex justify-content-end">  
-                      <button type="button" name="next" class="btn btn-primary nextButton">Valider</button>
+                    <div class="d-flex justify-content-end">
+                        <?php
+                        if ($question->id == 10) {
+                            ?>
+                          <button type="submit" name="validate" class="btn btn-primary nextButton">Valider</button>
+                          <?php
+                      } else {
+                          ?>
+                          <button type="button" name="next" class="btn btn-primary nextButton">Suivant</button>
+                          <?php
+                      }
+                      ?>
                     </div>
                   </div>
                 </div>
-
                 <?php
             }
             ?>
