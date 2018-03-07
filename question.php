@@ -1,7 +1,10 @@
 <?php
+session_start();
 include_once 'models/database.php';
 include_once 'models/question.php';
 include_once 'models/answers.php';
+include_once 'models/users.php';
+include_once 'models/result.php';
 include_once 'controllers/questionController.php';
 ?>
 <!DOCTYPE html>
@@ -9,8 +12,8 @@ include_once 'controllers/questionController.php';
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css" />
-          <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet"> 
-        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet" /> 
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/css/master.css" />
         <title>Test-e-quizz</title>
     <body class="bg-primary">
@@ -20,7 +23,7 @@ include_once 'controllers/questionController.php';
             </div>
             <div class="row">
                 <div class="offset-sm-3 col-sm-6">  
-                    <form>
+                    <form method="POST" action="resultats.php">
                         <div class = "card border-primary mb-3 visible" id="card-0">
                             <div class = "card-header">
                                 <h2 class="h3">
@@ -61,10 +64,20 @@ include_once 'controllers/questionController.php';
                                             <?php
                                         }
                                     }
+                                    if ($question->id == 10) {
+                                        ?>
+                                        <div class="d-flex justify-content-end button"> 
+                                            <button type="submit" name="validate" class="btn btn-primary nextButton" id="<?= $question->id ?>">Valider</button>
+                                        </div>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <div class="d-flex justify-content-end button">  
+                                            <button type="button" name="next" class="btn btn-primary nextButton" id="<?= $question->id ?>">Question suivante</button>
+                                        </div>
+                                        <?php
+                                    }
                                     ?>
-                                    <div class="d-flex justify-content-end button">  
-                                        <button type="button" name="next" class="btn btn-primary nextButton" id="<?= $question->id ?>">Question suivante</button>
-                                    </div>
                                 </div>
                             </div>
                             <div class="alert  alert-info answer hidden" id="description-<?= $question->id; ?>">                    
@@ -74,8 +87,8 @@ include_once 'controllers/questionController.php';
                             <?php
                         }
                         ?>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </body>

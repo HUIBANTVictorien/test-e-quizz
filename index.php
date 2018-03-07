@@ -85,7 +85,6 @@ include_once 'controllers/usersController.php';
                     </section
                 </section>
             </div>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     </body>

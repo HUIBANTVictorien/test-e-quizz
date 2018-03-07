@@ -1,4 +1,3 @@
-
 <?php
 
 class dataBase {
@@ -16,9 +15,10 @@ class dataBase {
     }
 
     public function __destruct() {
-
+        
     }
 
 }
 
 ?>
+
