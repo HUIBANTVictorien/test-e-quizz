@@ -1,4 +1,3 @@
-
 <?php
 
 class dataBase {
@@ -8,7 +7,7 @@ class dataBase {
 
     public function __construct() {
         try {
-            $this->db = new PDO('mysql:host=127.0.0.1;dbname=test-e-quizz;charset=utf8', 'usr_test-e-quizz', 'testicule');
+            $this->db = new PDO('mysql:host=127.0.0.1;dbname=test-e-quizz;charset=utf8', 'user_quizz', 'pw_quizz');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
@@ -22,3 +21,4 @@ class dataBase {
 }
 
 ?>
+

@@ -12,15 +12,18 @@ include_once 'controllers/questionController.php';
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet" /> 
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/css/master.css" />
         <title>Test-e-quizz</title>
-    <body>
+    <body class="bg-primary">
         <div class="container-fluid">
-            <div class="row">
-                <h1 class="w-100 text-center display-1">Quizz-in</h1>
+            <div class="row mb-5">  
+                <h1 class="w-100 text-center display-3">Quizz des droits de la femme</h1>    
             </div>
             <div class="row">
-                <div class="offset-3 col-6">
+                <div class="offset-sm-3 col-sm-6">  
                     <form method="POST" action="resultats.php">
                         <div class = "card border-primary mb-3 visible" id="card-0">
                             <div class = "card-header">
@@ -30,7 +33,7 @@ include_once 'controllers/questionController.php';
                             </div>
                             <div class="card-body">
                                 <p>Faîtes bien attention si vous cliquez sur une réponse elle sera validée !</p>
-                                <div class="d-flex justify-content-end button">
+                                <div class="d-flex justify-content-end button">  
                                     <button type="button" name="next" class="btn btn-primary nextButton"  id="0">Valider</button>
                                 </div>
                             </div>
@@ -46,7 +49,6 @@ include_once 'controllers/questionController.php';
                                 <div class="card-body">
                                     <?php
                                     if ($question->picture) {
-                                        ?>
                                         <div class="col-12 d-flex justify-content-center button">
                                             <img src="assets/img/imgQ8.jpg" class="img-fluid w-25 img-thumbnail" />
                                         </div>
@@ -54,23 +56,23 @@ include_once 'controllers/questionController.php';
                                     }
                                     foreach ($answersList as $answer) {
                                         if ($answer->idQuestion == $question->id) {
-                                            ?>
+                                            ?>                                  
                                             <p class="card-text">
-                                                <input data-answer="<?= $answer->isCorrect; ?>" type="radio" name="question<?= $answer->idQuestion; ?>" value="<?= $answer->id; ?>">
-                                                <label data-iscorrect="<?= $answer->isCorrect; ?>" class="pl-3" for="question<?= $answer->idQuestion; ?>"><?= $answer->answer; ?></label>
-                                            </p>
+                                                <input data-answer="<?= $answer->isCorrect; ?>" type="radio" id="question<?= $answer->id; ?>" name="question<?= $answer->id; ?>" value="<?= $answer->id; ?>">
+                                                <label data-iscorrect="<?= $answer->isCorrect; ?>" class="pl-3" for="question<?= $answer->id; ?>"><?= $answer->answer; ?></label>
+                                            </p>                          
                                             <?php
                                         }
                                     }
                                     if ($question->id == 10) {
                                         ?>
-                                        <div class="d-flex justify-content-end button">
+                                        <div class="d-flex justify-content-end button"> 
                                             <button type="submit" name="validate" class="btn btn-primary nextButton" id="<?= $question->id ?>">Valider</button>
                                         </div>
                                         <?php
                                     } else {
                                         ?>
-                                        <div class="d-flex justify-content-end button">
+                                        <div class="d-flex justify-content-end button">  
                                             <button type="button" name="next" class="btn btn-primary nextButton" id="<?= $question->id ?>">Question suivante</button>
                                         </div>
                                         <?php
@@ -78,9 +80,9 @@ include_once 'controllers/questionController.php';
                                     ?>
                                 </div>
                             </div>
-                            <div class="alert  alert-info answer hidden" id="description-<?= $question->id; ?>">
-                                <h3 class="alert-heading">Le saviez-vous ?</h3>
-                                <p class="mb-0"><?= $question->description ?>.</p>
+                            <div class="alert  alert-info answer hidden" id="description-<?= $question->id; ?>">                    
+                                <h3 class="alert-heading text-capitalize"><i class="fas fa-info-circle"></i> Le saviez-vous ?</h3>
+                                <p class="mb-0"><?= $question->description ?>.</p>                    
                             </div>
                             <?php
                         }

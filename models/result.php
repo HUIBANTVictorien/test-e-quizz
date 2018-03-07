@@ -19,6 +19,7 @@ class result extends database {
      */
 
     public function getResultByUserId() {
+
         $query = 'SELECT COUNT(`id_pokfze_answers`) as `nbAnswers`, (SELECT COUNT(*) FROM `pokfze_question`) AS `nbQuestion` FROM `pokfze_result` INNER JOIN `pokfze_answers` ON `pokfze_result`.`id_pokfze_answers` =  `pokfze_answers`.id WHERE `pokfze_answers`.`isCorrect` = 1 AND `pokfze_result`.`id_pokfze_user` = :idUser';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':idUser', $this->id_user, PDO::PARAM_INT);
@@ -138,3 +139,4 @@ class result extends database {
     }
 
 }
+
