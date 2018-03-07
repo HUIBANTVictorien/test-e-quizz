@@ -1,22 +1,45 @@
-        $(document).ready(function () {
+$(document).ready(function () {
+cardId=0;
     $(".nextButton").click(function () {
-        $parent = $(this).parent().parent().parent();
-        $parentNext = $(this).parent().parent().parent().next();
-        if ($parent.hasClass("visible")) {
-            $parent.removeClass("visible");
-            $parent.addClass("hidden");
-            $parentNext.removeClass("hidden");
-            $parentNext.addClass("visible");
+ 
+        
+
+        cardId = $(this).attr('id');
+        cardId = parseInt(cardId);
+        parent = $('#card-' + cardId);
+        parentNext = $('#card-' + (cardId + 1));
+
+
+        if (parent.hasClass("visible")) {
+            parent.removeClass("visible");
+            parent.addClass("hidden");
+            parentNext.removeClass("hidden");
+            parentNext.addClass("visible");
         }
-         $('input').prop('disabled', false);
-             $('.answer').removeClass("visible");
-    $('.answer').addClass("hidden");
+        $('input').prop('disabled', false);
+
+        $('#description-' + (cardId)).removeClass("visible");
+        $('#description-' + (cardId)).addClass("hidden");
+               console.log($('#description-' + cardId).attr('id'));
+        console.log(cardId);
+        console.log(parent.attr('id'));
+        console.log(parentNext.attr('id'));
     });
-    
 });
 
-$('input').click(function(){
+$('input').click(function () {
     $('input:not(:checked)').prop('disabled', true);
-    $('.answer').removeClass("hidden");
-    $('.answer').addClass("visible");
+    $('#description-' + (cardId + 1)).removeClass("hidden");
+    $('#description-' + (cardId + 1)).addClass("visible");
+    console.log($('#description-' + (cardId + 1)).attr('id'));
+    answer= $(this).attr('data-iscorrect');    
+    $('#card-' + (cardId + 1) + ' label').each(function() {
+  console.log($( this ).attr('data-iscorrect'));
+        if ($( this ).attr('data-iscorrect') == 1) {
+            $( this ).addClass('bg-success');
+        }
+                    $('#description-' + (cardId + 1)).prepend('<h3 class="text-uppercase">Bonne réponse</h3>');
+});
+    //console.log($('#card-' + (cardId + 1) + ' label').attr('data-iscorrect'));    
+     //   $(this).next('label').addClass('bg-success');    
 });
