@@ -14,15 +14,19 @@ class users extends database {
 
     public function addUser() {
         //On prépare la requête sql qui insert dans les champs selectionnés, les valeurs sont des marqueurs nominatifs
-        $query = 'INSERT INTO `pokfze_user` (``birthdate`, `gender`, `username`) VALUES (:birthdate, :gender, :username)';
+        $query = 'INSERT INTO `pokfze_user` (`birthdate`, `gender`, `username`) VALUES (:birthdate, :gender, :username)';
         $responseRequest = $this->db->prepare($query);
         $responseRequest->bindValue(':username', $this->username, PDO::PARAM_STR);
         $responseRequest->bindValue(':birthdate', $this->birthdate, PDO::PARAM_STR);
         $responseRequest->bindValue(':gender', $this->gender, PDO::PARAM_INT);
         //Si l'insertion s'est correctement déroulée on retourne vrai
-        return $responseRequest->execute();
+        $resultRequest = $responseRequest->execute();
+        if ($resultRequest) {
+            $this->id = $this->db->lastInsertId();
+        }
+        return $this->id;
     }
-    
+
     public function __destruct() {
         parent::__destruct();
     }
