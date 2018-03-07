@@ -1,11 +1,24 @@
 <?php
-if(count($_POST) > 0){
-    $user = new users();
+
+$resultAnswer = new result();
+$user = new users();
+
+$pushedAnswers = array();
+if (isset($_POST['validate'])) {
+    $nbQuestion = count($_POST);
+    $user->birthdate = $_SESSION['birthdate'];
     $user->username = $_SESSION['username'];
     $user->gender = $_SESSION['gender'];
-    $user->currentDate = date();
-    echo date('Y-m-d');
-    $user->birthdate = $_SESSION['birthdate'];
     $user->addUser();
+    $question = 1;
+    $resultAnswer->id_user = $user->id;
+    foreach ($_POST as $value) {
+        if ($question <= $nbQuestion - 1) {
+            $resultAnswer->id_question = $question;
+            $resultAnswer->id_answers = $value;
+            $resultAnswer->insertResultQuestion();
+            $question ++;
+        }
+    }
 }
 ?>

@@ -8,7 +8,6 @@ $questions = new question();
 $questionsList = $questions->getQuestionsList();
 $user = new users();
 
-
 $pushedAnswers = array();
 if (isset($_POST['validate'])) {
     $nbQuestion = count($_POST);

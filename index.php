@@ -26,10 +26,9 @@ include_once 'controllers/usersController.php';
         <?php
     } else {
         ?>
-
         <section class="autogrid">
           <section class="autogrid back">
-            <form action="resultats.php" method="POST">
+            <form action="#" method="POST">
               <form-group>
                 <label for="username" >Nom ou pseudo : </label><br/>
                 <input type="text" placeholder="NOM PSEUDO" name="username" value="<?= $user->username != '' ? $user->username : ''; ?>"/>
