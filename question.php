@@ -12,6 +12,7 @@ include_once 'controllers/questionController.php';
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css" />
+
         <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet" /> 
         <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/css/master.css" />
@@ -41,15 +42,14 @@ include_once 'controllers/questionController.php';
                             <div class = "card border-primary mb-3 hidden question" id="card-<?= $question->id ?>">
                                 <div class = "card-header">
                                     <h2 class="h3">
-                                        <?= $question->id ?> / 10 - 
-                                        <?= $question->question; ?>           
+                                        <?= $question->id ?> / 10 -
+                                        <?= $question->question; ?>
                                     </h2>
                                 </div>
                                 <div class="card-body">
                                     <?php
                                     if ($question->picture) {
-                                        ?>
-                                        <div class="col-12 d-flex justify-content-center button"> 
+                                        <div class="col-12 d-flex justify-content-center button">
                                             <img src="assets/img/imgQ8.jpg" class="img-fluid w-25 img-thumbnail" />
                                         </div>
                                         <?php
@@ -58,8 +58,8 @@ include_once 'controllers/questionController.php';
                                         if ($answer->idQuestion == $question->id) {
                                             ?>                                  
                                             <p class="card-text">
-                                                <input data-answer="<?= $answer->isCorrect; ?>" type="radio" id="question[<?= $answer->id; ?>]" name="question[<?= $answer->id; ?>]" value="<?= $answer->id; ?>">
-                                                <label data-iscorrect="<?= $answer->isCorrect; ?>" class="pl-3" for="question[<?= $answer->id; ?>]"><?= $answer->answer; ?></label>
+                                                <input data-answer="<?= $answer->isCorrect; ?>" type="radio" id="question<?= $answer->id; ?>" name="question<?= $answer->id; ?>" value="<?= $answer->id; ?>">
+                                                <label data-iscorrect="<?= $answer->isCorrect; ?>" class="pl-3" for="question<?= $answer->id; ?>"><?= $answer->answer; ?></label>
                                             </p>                          
                                             <?php
                                         }
