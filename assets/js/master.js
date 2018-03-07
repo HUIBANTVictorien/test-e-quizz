@@ -52,6 +52,7 @@ $(function () {
         $(this).parent().addClass('success');
       }
     });
+
 // message de retour à l'utilisateur
     if (answer == 1) {
       $('#description-' + (cardId + 1)).prepend('<h3 class="text-uppercase right p-3 mb-3"><i class="fas fa-check-circle"></i> Bonne réponse</h3>');
@@ -62,3 +63,6 @@ $(function () {
   });
 
 });
+
+
+
