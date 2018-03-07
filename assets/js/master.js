@@ -56,4 +56,4 @@ $(function () {
         }
         console.log($('#description-' + (cardId + 1)).attr('id'));
     });
-
+});
