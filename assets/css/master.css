@@ -9,3 +9,35 @@ p {
 .visible{
     display: block;
 }
+
+.success{
+    background-color: #d1ecf1;
+    color: #0c5469;
+    border-radius: .5em;
+}
+
+.right{
+    background-color: #FFF;
+    color: green;
+     border-radius: .5em;
+}
+
+.wrong{
+    background-color: #FFF;
+    color: darkred;
+     border-radius: .5em;
+}
+.card, .alert{
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+}
+
+h1{
+    font-family: 'Yeseva One', cursive;
+    color: white;
+}
+ul{
+    list-style: none;
+    padding-left: 0px;
+}

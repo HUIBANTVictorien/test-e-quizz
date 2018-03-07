@@ -1,49 +1,92 @@
-<!doctype html>
+<?php
+session_start();
+include_once 'models/database.php';
+include_once 'models/users.php';
+include_once 'controllers/usersController.php';
+?>
+<!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.css" />
+        <link href="https://fonts.googleapis.com/css?family=Yeseva+One" rel="stylesheet"> 
+        <link rel="stylesheet" href="assets/css/master.css" />
         <title>Bienvenue</title>
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.csss">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="assets/libs/knacss/knacss.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/css/master.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
-        <h1>Test-e-Quizz</h1>
-        <section class="autogrid">
-            <section class="autogrid back">
-                <form>
-                    <form-group>
-                        <input type="text" placeholder="NOM PSEUDO" />
-                        <label for="" >Nom ou pseudo : </label><br/>
-                    </form-group>    
-                    <br/><br/>
-                    <form-group>
-                        <input type="date" placeholder="TON AGE" max="2001-01-01" />
-                        <label for="" >Date de naissance : </label><br/>
-                    </form-group>    
-                    <br/><br/>
-                    <form-group>
-                        <label for="" >Civilité : </label>
-                        <ul class="is-unstyled">
-                            <li>
-                                <input type="radio" class="radio" name="radio" id="m">
-                                <label for="m">Monsieur</label>
-                            </li>
-                            <li>
-                                <input type="radio" class="radio" name="radio" id="f" checked="checked">
-                                <label for="f">Madame</label>
-                            </li>
-                        </ul>
-                    </form-group>    
-                    <input type="submit" />
-                    <a href="question.php">Pouet </a>
-                </form>
-            </section>
-        </section>
+    <body class="bg-primary">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="w-100 mb-5">
+                    <h1 class="w-100 text-center display-3">Quizz des droits de la femme</h1>
+                </div>
+            </div>
+                <section class="autogrid">
+                    <section class="autogrid back">
+                        <div class="row">
+                            <div class="offset-sm-3 col-sm-6">  
+                                <form action="question.php" method="POST">
+                                    <div class = "card border-primary mb-3 visible" id="card-0">
+                                        <div class = "card-header">
+                                            <h2 class="h3">
+                                                Inscription
+                                            </h2>
+                                        </div>
+                                        <div class="card-body">
+                                            <form-group>
+                                                <div class="row">
+                                                    <div class="offset-sm-3 col-sm-3">
+                                                        <label for="username" >Nom ou pseudo : </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" placeholder="NOM PSEUDO" name="username" value="<?= $user->username != '' ? $user->username : ''; ?>"/>
+                                                    </div>
+                                                    <p><?= $textUsername ?></p>
+                                                </div>
+                                            </form-group>
+                                            <br/><br/>
+                                            <form-group>
+                                                <div class="row">
+                                                    <div class="offset-sm-3 col-sm-3">
+                                                        <label for="birthdate" >Date de naissance : </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="date" placeholder="TON AGE" name="birthdate" max="2001-01-01" value="<?= $user->birthdate != '' ? $user->birthdate : ''; ?>"/>
+                                                    </div>
+                                                    <p><?= $textBirthdate ?></p>
+                                                </div>
+                                            </form-group>
+                                            <br/><br/>
+                                            <form-group>
+                                                <div class="row">
+                                                    <div class="offset-sm-3 col-sm-3">
+                                                        <label for="" >Civilité : </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <ul class="is-unstyled">
+                                                            <li>
+                                                                <input type="radio" name="gender" value="man" <?= $user->gender == 1 && $checkGender ? 'checked' : ''; ?>>
+                                                                <label for="m">Monsieur</label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio" name="gender" value="woman" <?= $user->gender == 0 && $checkGender ? 'checked' : ''; ?>>
+                                                                <label for="gender">Madame</label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </form-group>
+                                            <div class="d-flex justify-content-end button"> 
+                                                <input class="btn btn-primary" type="submit" value="Valider" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                    </section
+                </section>
+            </div>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     </body>
 </html>
