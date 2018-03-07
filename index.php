@@ -1,4 +1,9 @@
-<!doctype html>
+<?php
+include_once 'models/database.php';
+include_once 'models/users.php';
+include_once 'controllers/usersController.php';
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -13,37 +18,48 @@
     </head>
     <body>
         <h1>Test-e-Quizz</h1>
-        <section class="autogrid">
-            <section class="autogrid back">
-                <form>
-                    <form-group>
-                        <input type="text" placeholder="NOM PSEUDO" />
-                        <label for="" >Nom ou pseudo : </label><br/>
-                    </form-group>    
-                    <br/><br/>
-                    <form-group>
-                        <input type="date" placeholder="TON AGE" max="2001-01-01" />
-                        <label for="" >Date de naissance : </label><br/>
-                    </form-group>    
-                    <br/><br/>
-                    <form-group>
-                        <label for="" >Civilité : </label>
-                        <ul class="is-unstyled">
-                            <li>
-                                <input type="radio" class="radio" name="radio" id="m">
-                                <label for="m">Monsieur</label>
-                            </li>
-                            <li>
-                                <input type="radio" class="radio" name="radio" id="f" checked="checked">
-                                <label for="f">Madame</label>
-                            </li>
-                        </ul>
-                    </form-group>    
-                    <input type="submit" />
-                    <a href="question.php">Pouet </a>
-                </form>
+        <?php
+        if ($checkInsert) {
+            ?>
+            <a href="question.php">Passer au test </a>
+            <p><?= $user->id ?>
+                <?php
+            } else {
+                ?>
+            <section class="autogrid">
+                <section class="autogrid back">
+                    <form action="#" method="POST">
+                        <form-group>
+                            <label for="username" >Nom ou pseudo : </label><br/>
+                            <input type="text" placeholder="NOM PSEUDO" name="username" value="<?= $user->username != '' ? $user->username : ''; ?>"/>
+                            <p><?= $textUsername ?></p>
+                        </form-group>
+                        <br/><br/>
+                        <form-group>
+                            <label for="birthdate" >Date de naissance : </label><br/>
+                            <input type="date" placeholder="TON AGE" name="birthdate" max="2001-01-01" value="<?= $user->birthdate != '' ? $user->birthdate : ''; ?>"/>
+                            <p><?= $textBirthdate ?></p>
+                        </form-group>
+                        <br/><br/>
+                        <form-group>
+                            <label for="" >Civilité : </label>
+                            <ul class="is-unstyled">
+                                <li>
+                                    <input type="radio" name="gender" value="man" <?= $user->gender == 1 && $checkGender ? 'checked' : ''; ?>>
+                                    <label for="m">Monsieur</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="gender" value="woman" <?= $user->gender == 0 && $checkGender ? 'checked' : ''; ?>>
+                                    <label for="gender">Madame</label>
+                                </li>
+                            </ul>
+                        </form-group>
+                        <input type="submit" />
+
+                    </form>
+                </section>
             </section>
-        </section>
+        <?php } ?>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     </body>
 </html>
