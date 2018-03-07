@@ -13,15 +13,11 @@ class answers extends database {
         parent::__construct();
     }
 
-    /**
-     * Afficher toutes les réponses par rapport l'id de la question
-     * @return array()
-     */
-    public function displayAnswers() {
+    public function getAnswersList() {
         $listAnswers = array();
-        $sql = 'SELECT `' . self::PREFIX . 'answers`.`id`, `' . self::PREFIX . 'answers`.`answer`, `' . self::PREFIX . 'answers`.`pictureAnswer`, `' . self::PREFIX . 'answers`.`isCorrect`, `' . self::PREFIX . 'answers`.`id_pokfze_question` FROM `' . self::PREFIX . 'answers` INNER JOIN `' . self::PREFIX . 'question` ON `' . self::PREFIX . 'answers`.`id_pokfze_question` = `' . self::PREFIX . 'question`.`id` WHERE  `' . self::PREFIX . 'answers`.`id_pokfze_question` = :idQuestion';
+        $sql = 'SELECT `a`.`id`, `a`.`answer`, `a`.`pictureAnswer`, `a`.`isCorrect`, `a`.`id_pokfze_question` as `idQuestion` '
+                . 'FROM `pokfze_answers` as `a`';
         $resquestAnswers = $this->db->prepare($sql);
-        $resquestAnswers->bindValue(':idQuestion', $this->id_question, PDO::PARAM_INT);
         if ($resquestAnswers->execute()) {
             $listAnswers = $resquestAnswers->fetchAll(PDO::FETCH_OBJ);
         }

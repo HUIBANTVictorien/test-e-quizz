@@ -15,34 +15,34 @@
         <h1>Test-e-Quizz</h1>
         <section class="autogrid">
             <section class="autogrid back">
-            <form>
-                <form-group>
-                    <label for="" >Nom ou pseudo : </label><br/>
-                    <input type="text" placeholder="NOM PSEUDO" />
-                </form-group>    
-                <br/><br/>
-                <form-group>
-                    <label for="" >Date de naissance : </label><br/>
-                    <input type="date" placeholder="TON AGE" max="2001-01-01" />
-                </form-group>    
-                <br/><br/>
-                <form-group>
-                    <label for="" >Civilité : </label>
-                    <ul class="is-unstyled">
-                        <li>
-                            <input type="radio" class="radio" name="radio" id="m">
-                            <label for="m">Monsieur</label>
-                        </li>
-                        <li>
-                            <input type="radio" class="radio" name="radio" id="f" checked="checked">
-                            <label for="f">Madame</label>
-                        </li>
-                    </ul>
-                </form-group>    
-                <input type="submit" />
-                <a href="question.php">Pouet </a>
-            </form>
-                </section>
+                <form>
+                    <form-group>
+                        <input type="text" placeholder="NOM PSEUDO" />
+                        <label for="" >Nom ou pseudo : </label><br/>
+                    </form-group>    
+                    <br/><br/>
+                    <form-group>
+                        <input type="date" placeholder="TON AGE" max="2001-01-01" />
+                        <label for="" >Date de naissance : </label><br/>
+                    </form-group>    
+                    <br/><br/>
+                    <form-group>
+                        <label for="" >Civilité : </label>
+                        <ul class="is-unstyled">
+                            <li>
+                                <input type="radio" class="radio" name="radio" id="m">
+                                <label for="m">Monsieur</label>
+                            </li>
+                            <li>
+                                <input type="radio" class="radio" name="radio" id="f" checked="checked">
+                                <label for="f">Madame</label>
+                            </li>
+                        </ul>
+                    </form-group>    
+                    <input type="submit" />
+                    <a href="question.php">Pouet </a>
+                </form>
+            </section>
         </section>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     </body>
