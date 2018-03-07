@@ -7,22 +7,55 @@ $answersList = $answers->getAnswersList();
 $questions = new question();
 $questionsList = $questions->getQuestionsList();
 $user = new users();
-
-$pushedAnswers = array();
-if (isset($_POST['validate'])) {
-    $nbQuestion = count($_POST);
-    $user->birthdate = $_SESSION['birthdate'];
-    $user->username = $_SESSION['username'];
-    $user->gender = $_SESSION['gender'];
-    $user->addUser();
-    $question = 1;
-    $resultAnswer->id_user = $user->id;
-    foreach ($_POST as $value) {
-        if ($question <= $nbQuestion - 1) {
-            $resultAnswer->id_question = $question;
-            $resultAnswer->id_answers = $value;
-            $resultAnswer->insertResultQuestion();
-            $question ++;
-        }
+//regex pour le prénom, accepte les prénom simple d'une taille minimum de 2 caractères sans importances sur la cast et les prénoms composé de 2 caractère par partie
+$regexUsername = '/^[éèàëêîïa-z0-9]{2,20}$/i';
+$textUsername = '';
+$checkUsername = false;
+$textBirthdate = '';
+$checkBirthdate = false;
+$checkGender = false;
+$textGender = '';
+$textInsetError = '';
+$checkInsert = false;
+//Vérification de l'existance du pseudo
+if (isset($_POST['username'])) {
+//si il existe on l'hydrate dans l'objet users
+    $user->username = trim(strip_tags($_POST['username']));
+//vérification du format du pseudo.
+    if (preg_match($regexUsername, $user->username)) {
+        $textUsername = '';
+        $checkUsername = true;
+    } else {
+        $textUsername = 'Ce n\'est pas reconnu comme pseudo, recommencez !';
+        $checkUsername = false;
     }
+}
+if (isset($_POST['birthdate'])) {
+    $user->birthdate = $_POST['birthdate'];
+    list($year, $month, $day) = explode('-', $user->birthdate);
+    $day = intval($day);
+    $month = intval($month);
+    $year = intval($year);
+    if (checkdate($month, $day, $year)) {
+        $checkBirthdate = true;
+    } else {
+        $textUsername = false;
+        $textUsername = 'Vérifier le format de la date';
+    }
+}
+if (isset($_POST['gender'])) {
+    if ($_POST['gender'] == 'man') {
+        $user->gender = 1;
+        $checkGender = true;
+    } elseif ($_POST['gender'] == 'woman') {
+        $user->gender = 0;
+        $checkGender = true;
+    }
+}
+//si tout est valide on effectue l'insertion de l'utilisateur dans la base de donnée.
+if ($checkBirthdate && $checkUsername && $checkGender) {
+    $_SESSION['username'] = $user->username;
+    $_SESSION['birthdate'] = $user->birthdate;
+    $_SESSION['gender'] = $user->gender;
+    $checkInsert = true;
 }
